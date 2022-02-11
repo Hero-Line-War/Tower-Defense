@@ -17,7 +17,7 @@ public class Map : MonoBehaviour
     {
         main = Camera.main;
         main.transform.position = new Vector3((float)3.5, (float)3.5, -1);
-        generateMap();
+        generateMap(); 
         DeleteTile(6, 0);
         CreateTower(3, 3);
     }
