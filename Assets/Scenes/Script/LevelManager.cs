@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField]
+   [SerializeField]
     public GameObject[] tiles;
     private Camera mainCamera;
+
+    private int TileSize = 1;
+
+    [SerializeField]
+    public CameraMovements cameraMovement;
 
     // Start is called before the first frame update
     void Start()
     {
-        mainCamera = Camera.main;
-        mainCamera.transform.position = new Vector3(2.5f, 2.5f, -10);
-        mainCamera.orthographicSize = 10f;
         CreateTileOnMap();
     }
 
@@ -27,30 +29,40 @@ public class LevelManager : MonoBehaviour
     private void CreateTileOnMap()
     {
         string[] mapData = ReadLevelText();
+
         int mapXSize = mapData[0].ToCharArray().Length;
         int mapYSize = mapData.Length;
+
+        Vector3 maxTile = Vector3.zero;
+
+        Vector3 worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
 
         for (int y = 0; y < mapYSize; y++)
         {
             char[] newTiles = mapData[y].ToCharArray();
             for (int x = 0; x < mapXSize; x++)
             {
-                PlaceTile(newTiles[x].ToString(),x,y);
+                maxTile = PlaceTile(newTiles[x].ToString(),x,y, worldStart);
             }
         }
+
+        //cameraMovement.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
     }
 
-    private void PlaceTile(string tileType, int x, int y)
+    private Vector3 PlaceTile(string tileType, int x, int y, Vector3 worldStart)
     {
         int tileTypeIndex = Int32.Parse(tileType);
         GameObject newTile = Instantiate(tiles[tileTypeIndex]);
-        newTile.transform.position = new Vector3(x, y, 1);
+        newTile.transform.position = new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0);
+        return newTile.transform.position;
     }
 
     private string[] ReadLevelText()
     {
-        TextAsset dataBinding = Resources.Load("Level") as TextAsset;
-        string tmpData = dataBinding.text.Replace(Environment.NewLine, String.Empty);
-        return tmpData.Split('-');
+        TextAsset bindData = Resources.Load("Level") as TextAsset;
+
+        string data = bindData.text.Replace(Environment.NewLine, string.Empty);
+
+        return data.Split('-');
     }
 }
