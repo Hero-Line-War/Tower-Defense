@@ -26,10 +26,7 @@ public class LevelManager : MonoBehaviour
 
     private void CreateTileOnMap()
     {
-        string[] mapData = new string[]
-        {
-            "1111", "1111", "2222", "3333", "0000"
-        };
+        string[] mapData = ReadLevelText();
         int mapXSize = mapData[0].ToCharArray().Length;
         int mapYSize = mapData.Length;
 
@@ -48,5 +45,12 @@ public class LevelManager : MonoBehaviour
         int tileTypeIndex = Int32.Parse(tileType);
         GameObject newTile = Instantiate(tiles[tileTypeIndex]);
         newTile.transform.position = new Vector3(x, y, 1);
+    }
+
+    private string[] ReadLevelText()
+    {
+        TextAsset dataBinding = Resources.Load("Level") as TextAsset;
+        string tmpData = dataBinding.text.Replace(Environment.NewLine, String.Empty);
+        return tmpData.Split('-');
     }
 }
