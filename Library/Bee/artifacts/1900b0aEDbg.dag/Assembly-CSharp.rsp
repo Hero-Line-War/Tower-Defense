@@ -348,6 +348,8 @@
 "Assets/Scripts/GameTileContent.cs"
 "Assets/Scripts/GameTileContentFactory.cs"
 "Assets/Scripts/GameTileContentType.cs"
+"Assets/Scripts/TargetPoint.cs"
+"Assets/Scripts/Tower.cs"
 -langversion:9.0
 
 /deterministic

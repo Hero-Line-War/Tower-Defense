@@ -20,6 +20,8 @@ public class GameBoard : MonoBehaviour {
 
 	List<GameTile> spawnPoints = new List<GameTile>();
 
+	List<GameTileContent> updatingContent = new List<GameTileContent>();
+
 	GameTileContentFactory contentFactory;
 
 	public int SpawnPointCount => spawnPoints.Count;
@@ -130,22 +132,28 @@ public class GameBoard : MonoBehaviour {
     {
         if (tile.Content.Type == GameTileContentType.Tower)
         {
-            tile.Content = contentFactory.Get(GameTileContentType.Empty);
+			updatingContent.Remove(tile.Content);
+			tile.Content = contentFactory.Get(GameTileContentType.Empty);
             FindPaths();
         }
         else if (tile.Content.Type == GameTileContentType.Empty)
         {
             tile.Content = contentFactory.Get(GameTileContentType.Tower);
-            if (!FindPaths())
+            if (FindPaths())
             {
-                tile.Content = contentFactory.Get(GameTileContentType.Empty);
-                FindPaths();
-            }
+				updatingContent.Add(tile.Content);
+			}
+            else
+            {
+				tile.Content = contentFactory.Get(GameTileContentType.Empty);
+				FindPaths();
+			}
         }
         else if (tile.Content.Type == GameTileContentType.Wall)
         {
             tile.Content = contentFactory.Get(GameTileContentType.Tower);
-        }
+			updatingContent.Add(tile.Content);
+		}
 	}
 
 	public GameTile GetTile (Ray ray) {
@@ -203,6 +211,14 @@ public class GameBoard : MonoBehaviour {
 			}
 		}
 		return true;
+	}
+
+	public void GameUpdate()
+	{
+		for (int i = 0; i < updatingContent.Count; i++)
+		{
+			updatingContent[i].GameUpdate();
+		}
 	}
 
 }

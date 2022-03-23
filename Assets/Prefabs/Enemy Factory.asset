@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d2bca39950a414eb5ca9bda37fe537, type: 3}
   m_Name: Enemy Factory
   m_EditorClassIdentifier: 
-  prefab: {fileID: 141055782204772055, guid: deceb365bf1966844a7df5283bb832b8, type: 3}
+  prefab: {fileID: 3831406103983651838, guid: d3aedd8e3eded294cb4dffb7b71b174c, type: 3}
   speed: 2

@@ -13,10 +13,12 @@ public class Enemy : MonoBehaviour
 	Vector3 positionFrom, positionTo;
 	float progress;
 	float speed;
+	float Health { get; set; }
 
 	public void Initialize(float speed)
 	{
 		this.speed = speed;
+		Health = 100f;
 	}
 
 	public EnemyFactory OriginFactory
@@ -41,6 +43,11 @@ public class Enemy : MonoBehaviour
 
 	public bool GameUpdate()
 	{
+		if (Health <= 0f)
+		{
+			OriginFactory.Reclaim(this);
+			return false;
+		}
 		progress += Time.deltaTime * speed;
 		while (progress >= 1f)
 		{
@@ -58,5 +65,12 @@ public class Enemy : MonoBehaviour
 		transform.localPosition =
 			Vector3.LerpUnclamped(positionFrom, positionTo, progress);
 		return true;
+	}
+
+
+	public void ApplyDamage(float damage)
+	{
+		Debug.Assert(damage >= 0f, "Negative damage applied.");
+		Health -= damage;
 	}
 }
