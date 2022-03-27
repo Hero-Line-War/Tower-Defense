@@ -128,9 +128,9 @@ public class GameBoard : MonoBehaviour {
 		}
 	}
 
-    public void ToggleTower(GameTile tile)
+    public void ToggleTurret(GameTile tile)
     {
-        if (tile.Content.Type == GameTileContentType.Tower)
+        if (tile.Content.Type == GameTileContentType.Turret)
         {
 			updatingContent.Remove(tile.Content);
 			tile.Content = contentFactory.Get(GameTileContentType.Empty);
@@ -138,7 +138,7 @@ public class GameBoard : MonoBehaviour {
         }
         else if (tile.Content.Type == GameTileContentType.Empty)
         {
-            tile.Content = contentFactory.Get(GameTileContentType.Tower);
+            tile.Content = contentFactory.Get(GameTileContentType.Turret);
             if (FindPaths())
             {
 				updatingContent.Add(tile.Content);
@@ -151,7 +151,7 @@ public class GameBoard : MonoBehaviour {
         }
         else if (tile.Content.Type == GameTileContentType.Wall)
         {
-            tile.Content = contentFactory.Get(GameTileContentType.Tower);
+            tile.Content = contentFactory.Get(GameTileContentType.Turret);
 			updatingContent.Add(tile.Content);
 		}
 	}

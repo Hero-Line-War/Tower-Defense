@@ -43,11 +43,13 @@ public class Enemy : MonoBehaviour
 
 	public bool GameUpdate()
 	{
+		
 		if (Health <= 0f)
 		{
 			OriginFactory.Reclaim(this);
 			return false;
 		}
+		
 		progress += Time.deltaTime * speed;
 		while (progress >= 1f)
 		{
@@ -62,8 +64,7 @@ public class Enemy : MonoBehaviour
 			positionTo = tileTo.transform.localPosition;
 			progress -= 1f;
 		}
-		transform.localPosition =
-			Vector3.LerpUnclamped(positionFrom, positionTo, progress);
+		transform.localPosition = Vector3.LerpUnclamped(positionFrom, positionTo, progress);
 		return true;
 	}
 

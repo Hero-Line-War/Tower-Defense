@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
 public enum GameTileContentType {
-	Empty, Destination, Wall, Start, Tower
+	Empty, Destination, Wall, Start, Turret
 }
 

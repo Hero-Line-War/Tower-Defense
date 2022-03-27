@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour {
 
@@ -14,10 +16,15 @@ public class Game : MonoBehaviour {
 	[SerializeField]
 	EnemyFactory enemyFactory = default;
 
-	[SerializeField, Range(0.1f, 10f)]
-	float spawnSpeed = 1f;
+	[SerializeField]
+	private float timeBetweenWaves = 5f;
 
-	float spawnProgress;
+	[SerializeField]
+	private Text waveCountdownTimer;
+
+	private float countdown = 2f;
+
+	private int waveIndex = 0;
 
 	EnemyCollection enemies = new EnemyCollection();
 
@@ -56,12 +63,14 @@ public class Game : MonoBehaviour {
 			board.ShowGrid = !board.ShowGrid;
 		}
 
-		spawnProgress += spawnSpeed * Time.deltaTime;
-		while (spawnProgress >= 1f)
+		if (countdown <= 0f)
 		{
-			spawnProgress -= 1f;
-			SpawnEnemy();
+			StartCoroutine(SpawnWave());
+			countdown = timeBetweenWaves;
 		}
+
+		countdown -= Time.deltaTime;
+		waveCountdownTimer.text = Mathf.Round(countdown).ToString();
 
 		enemies.GameUpdate();
 		Physics.SyncTransforms();
@@ -84,13 +93,25 @@ public class Game : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                board.ToggleTower(tile);
+                board.ToggleTurret(tile);
             }
             else
             {
                 board.ToggleWall(tile);
             }
         }
+	}
+
+	IEnumerator SpawnWave()
+	{
+		waveIndex++;
+
+		for (int i = 0; i < waveIndex; i++)
+		{
+			SpawnEnemy();
+			yield return new WaitForSeconds(0.5f);
+		}
+
 	}
 
 	void SpawnEnemy()
