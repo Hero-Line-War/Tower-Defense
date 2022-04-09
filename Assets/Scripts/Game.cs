@@ -4,7 +4,23 @@ using UnityEngine.UI;
 
 public class Game : MonoBehaviour {
 
-	[SerializeField]
+	#region Singleton
+	public static Game instance;
+
+	private void Awake()
+    {
+		if(instance != null)
+        {
+			Debug.LogError("Une Game est déjà dans la scène");
+			return;
+        }
+		board.Initialize(boardSize, tileContentFactory);
+		board.ShowGrid = true;
+		instance = this;
+    }
+    #endregion
+
+    [SerializeField]
 	Vector2Int boardSize = new Vector2Int(11, 11);
 
 	[SerializeField]
@@ -30,12 +46,6 @@ public class Game : MonoBehaviour {
 
 	Ray TouchRay => Camera.main.ScreenPointToRay(Input.mousePosition);
 
-
-	void Awake () {
-		board.Initialize(boardSize, tileContentFactory);
-		board.ShowGrid = true;
-	}
-
 	void OnValidate () {
 		if (boardSize.x < 2) {
 			boardSize.x = 2;
@@ -50,10 +60,6 @@ public class Game : MonoBehaviour {
 		if (Input.GetMouseButtonDown(0))
 		{
 			HandleTouch();
-		}
-		else if (Input.GetMouseButtonDown(1))
-		{
-			HandleAlternativeTouch();
 		}
 
 		if (Input.GetKeyDown(KeyCode.V)) {
@@ -75,15 +81,6 @@ public class Game : MonoBehaviour {
 		enemies.GameUpdate();
 		Physics.SyncTransforms();
 		board.GameUpdate();
-	}
-
-	void HandleAlternativeTouch()
-	{
-		GameTile tile = board.GetTile(TouchRay);
-		if (tile != null)
-		{
-			board.SetDestination(tile);
-		}
 	}
 
 	void HandleTouch()

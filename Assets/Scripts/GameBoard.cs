@@ -28,7 +28,8 @@ public class GameBoard : MonoBehaviour {
 
 	bool showGrid, showPaths;
 
-	public bool ShowGrid {
+
+    public bool ShowGrid {
 		get => showGrid;
 		set {
 			showGrid = value;
