@@ -17,10 +17,13 @@ public class EnemyCollection
 		{
 			if (!enemies[i].GameUpdate())
 			{
+				enemies.RemoveAt(i);
+				/*
 				int lastIndex = enemies.Count - 1;
 				enemies[i] = enemies[lastIndex];
 				enemies.RemoveAt(lastIndex);
 				i -= 1;
+				*/
 			}
 		}
 	}

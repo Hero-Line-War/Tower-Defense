@@ -20,8 +20,9 @@ public class Turret : GameTileContent
 
 	public string enemyTag = "Enemy";
 	private Transform target;
+    public Enemy Enemy { get; private set; }
 
-	public GameObject bulletPrefab;
+    public GameObject bulletPrefab;
 	public Transform firePoint;
 
 	void Start()
@@ -48,6 +49,8 @@ public class Turret : GameTileContent
         if (nearestEnemy != null && shortestDistance <= targetingRange)
         {
             target = nearestEnemy.transform;
+            Enemy = target.GetComponent<Enemy>();
+            Enemy.ApplyDamage(damagePerSecond);
         }
         else
         {

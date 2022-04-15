@@ -13,10 +13,10 @@ public class GameTileContentFactory : GameObjectFactory {
 	GameTileContent emptyPrefab = default;
 
 	[SerializeField]
-	GameTileContent wallPrefab = default;
+	GameTileContent SandBagsPrefab = default;
 
     [SerializeField]
-    GameTileContent TurretPrefab = default;
+    GameTileContent StandardTurretPrefab = default;
 
 	public GameTileContent Get(GameTileContentType type)
 	{
@@ -24,9 +24,9 @@ public class GameTileContentFactory : GameObjectFactory {
 		{
 			case GameTileContentType.Destination: return Get(destinationPrefab);
 			case GameTileContentType.Empty: return Get(emptyPrefab);
-			case GameTileContentType.Wall: return Get(wallPrefab);
+			case GameTileContentType.SandBags: return Get(SandBagsPrefab);
 			case GameTileContentType.Start: return Get(startPrefab);
-            case GameTileContentType.Turret: return Get(TurretPrefab);
+            case GameTileContentType.StandardTurret: return Get(StandardTurretPrefab);
 		}
 		Debug.Assert(false, "Unsupported type: " + type);
 		return null;

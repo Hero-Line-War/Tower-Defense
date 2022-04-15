@@ -349,6 +349,7 @@
 "Assets/Scripts/GameTileContent.cs"
 "Assets/Scripts/GameTileContentFactory.cs"
 "Assets/Scripts/GameTileContentType.cs"
+"Assets/Scripts/Shop.cs"
 "Assets/Scripts/Turret.cs"
 "Assets/Scripts/Wave.cs"
 -langversion:9.0

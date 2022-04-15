@@ -54,8 +54,7 @@ public class GameTile : MonoBehaviour {
 		}
 		neighbor.distance = distance + 1;
 		neighbor.nextOnPath = this;
-		return
-			neighbor.Content.BlocksPath ? null : neighbor;
+		return neighbor.Content.BlocksPath ? null : neighbor;
 	}
 
 	public void HidePath () {

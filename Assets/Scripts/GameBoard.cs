@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class GameBoard : MonoBehaviour {
 
@@ -116,12 +117,12 @@ public class GameBoard : MonoBehaviour {
 	}
 
 	public void ToggleWall (GameTile tile) {
-		if (tile.Content.Type == GameTileContentType.Wall) {
+		if (tile.Content.Type == GameTileContentType.SandBags) {
 			tile.Content = contentFactory.Get(GameTileContentType.Empty);
 			FindPaths();
 		}
 		else if (tile.Content.Type == GameTileContentType.Empty) {
-			tile.Content = contentFactory.Get(GameTileContentType.Wall);
+			tile.Content = contentFactory.Get(GameTileContentType.SandBags);
 			if (!FindPaths()) {
 				tile.Content = contentFactory.Get(GameTileContentType.Empty);
 				FindPaths();
@@ -131,7 +132,7 @@ public class GameBoard : MonoBehaviour {
 
     public void ToggleTurret(GameTile tile)
     {
-        if (tile.Content.Type == GameTileContentType.Turret)
+        if (tile.Content.Type == GameTileContentType.StandardTurret)
         {
 			updatingContent.Remove(tile.Content);
 			tile.Content = contentFactory.Get(GameTileContentType.Empty);
@@ -139,7 +140,7 @@ public class GameBoard : MonoBehaviour {
         }
         else if (tile.Content.Type == GameTileContentType.Empty)
         {
-            tile.Content = contentFactory.Get(GameTileContentType.Turret);
+            tile.Content = contentFactory.Get(GameTileContentType.StandardTurret);
             if (FindPaths())
             {
 				updatingContent.Add(tile.Content);
@@ -150,9 +151,9 @@ public class GameBoard : MonoBehaviour {
 				FindPaths();
 			}
         }
-        else if (tile.Content.Type == GameTileContentType.Wall)
+        else if (tile.Content.Type == GameTileContentType.SandBags)
         {
-            tile.Content = contentFactory.Get(GameTileContentType.Turret);
+            tile.Content = contentFactory.Get(GameTileContentType.StandardTurret);
 			updatingContent.Add(tile.Content);
 		}
 	}
@@ -200,17 +201,15 @@ public class GameBoard : MonoBehaviour {
 			}
 		}
 
-		foreach (GameTile tile in tiles) {
-			if (!tile.HasPath) {
-				return false;
-			}
-		}
 
-		if (showPaths) {
-			foreach (GameTile tile in tiles) {
-				tile.ShowPath();
-			}
-		}
+		GameTile tile2 = tiles[0];
+
+		//Pour savoir si il reste un chemin possible
+		if (tile2.NextTileOnPath == null)
+        {
+			return false;
+        }
+
 		return true;
 	}
 
