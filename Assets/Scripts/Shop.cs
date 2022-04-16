@@ -2,22 +2,19 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-
-    //private BuildManager buildManager;
-
-    private void Start()
+    public void PurchaseSandBags()
     {
-        Game game;
-        game = Game.instance;
-        //buildManager = BuildManager.instance;
+        Game.Instance.board.SetTurretToBuild(GameTileContentType.SandBags);
     }
 
-    
-    
     public void PurchaseStandardTurret()
     {
-        Debug.Log("Tourelle standard selectionnée");
-        //buildManager.SetTurretToBuild(buildManager.standardTurretPrefab);
+        Game.Instance.board.SetTurretToBuild(GameTileContentType.StandardTurret);
+    }
+
+    public void PurchaseMissileLauncher()
+    {
+        Game.Instance.board.SetTurretToBuild(GameTileContentType.MissileLauncher);
     }
 
 

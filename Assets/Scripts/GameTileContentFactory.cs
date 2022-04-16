@@ -18,6 +18,9 @@ public class GameTileContentFactory : GameObjectFactory {
     [SerializeField]
     GameTileContent StandardTurretPrefab = default;
 
+	[SerializeField]
+	GameTileContent MissileLauncherPrefab = default;
+
 	public GameTileContent Get(GameTileContentType type)
 	{
 		switch (type)
@@ -27,6 +30,7 @@ public class GameTileContentFactory : GameObjectFactory {
 			case GameTileContentType.SandBags: return Get(SandBagsPrefab);
 			case GameTileContentType.Start: return Get(startPrefab);
             case GameTileContentType.StandardTurret: return Get(StandardTurretPrefab);
+			case GameTileContentType.MissileLauncher: return Get(MissileLauncherPrefab);
 		}
 		Debug.Assert(false, "Unsupported type: " + type);
 		return null;

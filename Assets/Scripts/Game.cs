@@ -5,18 +5,20 @@ using UnityEngine.UI;
 public class Game : MonoBehaviour {
 
 	#region Singleton
-	public static Game instance;
+	public static Game Instance { get; private set; }
 
 	private void Awake()
     {
-		if(instance != null)
-        {
-			Debug.LogError("Une Game est déjà dans la scène");
-			return;
-        }
+		if (Instance != null && Instance != this)
+		{
+			Destroy(this);
+		}
+		else
+		{
+			Instance = this;
+		}
 		board.Initialize(boardSize, tileContentFactory);
 		board.ShowGrid = true;
-		instance = this;
     }
     #endregion
 
@@ -24,7 +26,7 @@ public class Game : MonoBehaviour {
 	Vector2Int boardSize = new Vector2Int(11, 11);
 
 	[SerializeField]
-	GameBoard board = default;
+	public GameBoard board = default;
 
 	[SerializeField]
 	GameTileContentFactory tileContentFactory = default;
@@ -88,13 +90,20 @@ public class Game : MonoBehaviour {
         GameTile tile = board.GetTile(TouchRay);
         if (tile != null)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+			if(board.GetTurretToBuild() == -1)
             {
-                board.ToggleTurret(tile);
+				return;
             }
             else
             {
-                board.ToggleWall(tile);
+				board.BuildTurret(tile);
+
+			}
+
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                board.UpgradeTurret(tile);
             }
         }
 	}

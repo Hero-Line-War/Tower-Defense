@@ -25,6 +25,8 @@ public class GameBoard : MonoBehaviour {
 
 	GameTileContentFactory contentFactory;
 
+	private int turretToBuild;
+
 	public int SpawnPointCount => spawnPoints.Count;
 
 	bool showGrid, showPaths;
@@ -62,12 +64,12 @@ public class GameBoard : MonoBehaviour {
 		}
 	}
 
-	public void Initialize (
-		Vector2Int size, GameTileContentFactory contentFactory
-	) {
+	public void Initialize (Vector2Int size, GameTileContentFactory contentFactory) 
+	{
 		this.size = size;
 		this.contentFactory = contentFactory;
 		ground.localScale = new Vector3(size.x, size.y, 1f);
+		turretToBuild = -1;
 
 		Vector2 offset = new Vector2(
 			(size.x - 1) * 0.5f, (size.y - 1) * 0.5f
@@ -116,46 +118,42 @@ public class GameBoard : MonoBehaviour {
 		return spawnPoints[index];
 	}
 
-	public void ToggleWall (GameTile tile) {
-		if (tile.Content.Type == GameTileContentType.SandBags) {
-			tile.Content = contentFactory.Get(GameTileContentType.Empty);
-			FindPaths();
-		}
-		else if (tile.Content.Type == GameTileContentType.Empty) {
-			tile.Content = contentFactory.Get(GameTileContentType.SandBags);
-			if (!FindPaths()) {
-				tile.Content = contentFactory.Get(GameTileContentType.Empty);
-				FindPaths();
-			}
-		}
+	public void SetTurretToBuild(GameTileContentType type)
+    {
+		turretToBuild = (int) type;
 	}
 
-    public void ToggleTurret(GameTile tile)
+	public int GetTurretToBuild()
+	{
+		return turretToBuild;
+	}
+
+	public void BuildTurret(GameTile tile)
     {
-        if (tile.Content.Type == GameTileContentType.StandardTurret)
+		if(tile.Content.Type == GameTileContentType.Empty)
         {
-			updatingContent.Remove(tile.Content);
-			tile.Content = contentFactory.Get(GameTileContentType.Empty);
-            FindPaths();
-        }
-        else if (tile.Content.Type == GameTileContentType.Empty)
-        {
-            tile.Content = contentFactory.Get(GameTileContentType.StandardTurret);
-            if (FindPaths())
-            {
-				updatingContent.Add(tile.Content);
-			}
-            else
-            {
+			tile.Content = contentFactory.Get((GameTileContentType)GetTurretToBuild());
+			if (!FindPaths())
+			{
 				tile.Content = contentFactory.Get(GameTileContentType.Empty);
 				FindPaths();
 			}
-        }
-        else if (tile.Content.Type == GameTileContentType.SandBags)
+		}else if (tile.Content.Type == GameTileContentType.SandBags || tile.Content.Type == GameTileContentType.StandardTurret)
         {
-            tile.Content = contentFactory.Get(GameTileContentType.StandardTurret);
-			updatingContent.Add(tile.Content);
+			SellTurret(tile);
+			tile.Content = contentFactory.Get((GameTileContentType)GetTurretToBuild());
 		}
+
+	}
+
+	public void UpgradeTurret(GameTile tile)
+    {
+		
+	}
+
+	public void SellTurret(GameTile tile)
+    {
+		tile.Content = contentFactory.Get(GameTileContentType.Empty);
 	}
 
 	public GameTile GetTile (Ray ray) {

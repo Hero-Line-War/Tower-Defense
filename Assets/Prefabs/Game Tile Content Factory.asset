@@ -17,3 +17,4 @@ MonoBehaviour:
   emptyPrefab: {fileID: 6774367682587871147, guid: 10c1c9c7e55ad41d9aacf719b0a3fdac, type: 3}
   SandBagsPrefab: {fileID: 7307083209500466434, guid: 7889b3e42b29881408a396ea8303773f, type: 3}
   StandardTurretPrefab: {fileID: 4283145578110194574, guid: 7d473ffdd718df44a967af07c47e0fc7, type: 3}
+  MissileLauncherPrefab: {fileID: 1683157807974996271, guid: 7f19c4844b487324b9999a38570487ce, type: 3}

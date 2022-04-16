@@ -50,7 +50,6 @@ public class Turret : GameTileContent
         {
             target = nearestEnemy.transform;
             Enemy = target.GetComponent<Enemy>();
-            Enemy.ApplyDamage(damagePerSecond);
         }
         else
         {
@@ -82,12 +81,13 @@ public class Turret : GameTileContent
 
     void Shoot()
     {
-        GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, bulletPrefab.transform.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
 
         if (bullet != null)
         {
             bullet.Seek(target);
+            Enemy.ApplyDamage(damagePerSecond);
         }
     }
 

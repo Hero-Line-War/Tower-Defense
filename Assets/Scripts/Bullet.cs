@@ -23,6 +23,11 @@ public class Bullet : MonoBehaviour
             return;
         }
 
+        transform.position += (target.transform.position - transform.position).normalized * speed * Time.deltaTime;
+        transform.transform.LookAt(target.transform);
+
+        /*
+
         Vector3 dir = target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
@@ -32,8 +37,10 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        transform.Translate(dir.normalized * distanceThisFrame, Space.World);
+        
 
+        transform.Translate(dir.normalized * distanceThisFrame, Space.World);
+        */
     }
 
     void HitTarget()
