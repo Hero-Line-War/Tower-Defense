@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eece8bff785c4a6da73b5ff15cfbe8c, type: 3}
   m_Name: Game Tile Content Factory
   m_EditorClassIdentifier: 
-  startPrefab: {fileID: 4362224071537235649, guid: 4f2917b7301198849bfb93f9d93a514e, type: 3}
-  destinationPrefab: {fileID: 4362224071537235649, guid: 9f9d19a64be9845788b6cd8b2976f89f, type: 3}
+  startPrefab: {fileID: -7479258346876287113, guid: 971bdb30c63e72a41997d5d4662032dc, type: 3}
+  destinationPrefab: {fileID: 5577940639325459874, guid: 18a14071b18807e47bcdf65912031198, type: 3}
   emptyPrefab: {fileID: 6774367682587871147, guid: 10c1c9c7e55ad41d9aacf719b0a3fdac, type: 3}
   SandBagsPrefab: {fileID: 7307083209500466434, guid: 7889b3e42b29881408a396ea8303773f, type: 3}
   StandardTurretPrefab: {fileID: 4283145578110194574, guid: 7d473ffdd718df44a967af07c47e0fc7, type: 3}

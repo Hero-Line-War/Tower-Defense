@@ -5,6 +5,9 @@ public class GameTile : MonoBehaviour {
 	[SerializeField]
 	Transform arrow = default;
 
+    [SerializeField]
+    Transform grid = default;
+
 	GameTile north, east, south, west, nextOnPath;
 
 	int distance;
@@ -73,6 +76,16 @@ public class GameTile : MonoBehaviour {
 			nextOnPath == south ? southRotation :
 			westRotation;
 	}
+
+    public void HideGrid()
+    {
+		grid.gameObject.SetActive(false);
+	}
+
+    public void ShowGrid()
+    {
+        grid.gameObject.SetActive(true);
+    }
 
 	static Quaternion
 		northRotation = Quaternion.Euler(90f, 0f, 0f),

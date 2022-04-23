@@ -8,7 +8,7 @@ public class GameTileContent : MonoBehaviour {
 
 	GameTileContentFactory originFactory;
 
-    public bool BlocksPath => Type == GameTileContentType.SandBags || Type == GameTileContentType.StandardTurret;
+    public bool BlocksPath => Type == GameTileContentType.SandBags || Type == GameTileContentType.StandardTurret || Type == GameTileContentType.MissileLauncher;
 
 	public GameTileContentType Type => type;
 

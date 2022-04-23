@@ -4,10 +4,7 @@ using System;
 
 public class GameBoard : MonoBehaviour {
 
-	[SerializeField]
-	Transform ground = default;
-
-	[SerializeField]
+    [SerializeField]
 	GameTile tilePrefab = default;
 
 	[SerializeField]
@@ -31,7 +28,7 @@ public class GameBoard : MonoBehaviour {
 
 	bool showGrid, showPaths;
 
-
+	/*
     public bool ShowGrid {
 		get => showGrid;
 		set {
@@ -46,6 +43,7 @@ public class GameBoard : MonoBehaviour {
 			}
 		}
 	}
+	*/
 
 	public bool ShowPaths {
 		get => showPaths;
@@ -64,12 +62,34 @@ public class GameBoard : MonoBehaviour {
 		}
 	}
 
+    public bool ShowGrid
+    {
+        get => showGrid;
+        set
+        {
+            showGrid = value;
+            if (showGrid)
+            {
+                foreach (GameTile tile in tiles)
+                {
+                    tile.ShowGrid();
+                }
+            }
+            else
+            {
+                foreach (GameTile tile in tiles)
+                {
+                    tile.HideGrid();
+                }
+            }
+        }
+    }
+
 	public void Initialize (Vector2Int size, GameTileContentFactory contentFactory) 
 	{
 		this.size = size;
 		this.contentFactory = contentFactory;
-		ground.localScale = new Vector3(size.x, size.y, 1f);
-		turretToBuild = -1;
+        turretToBuild = -1;
 
 		Vector2 offset = new Vector2(
 			(size.x - 1) * 0.5f, (size.y - 1) * 0.5f
@@ -78,7 +98,7 @@ public class GameBoard : MonoBehaviour {
 		for (int i = 0, y = 0; y < size.y; y++) {
 			for (int x = 0; x < size.x; x++, i++) {
 				GameTile tile = tiles[i] = Instantiate(tilePrefab);
-				tile.transform.SetParent(transform, false);
+                tile.transform.SetParent(transform, false);
 				tile.transform.localPosition = new Vector3(
 					x - offset.x, 0f, y - offset.y
 				);
@@ -130,7 +150,7 @@ public class GameBoard : MonoBehaviour {
 
 	public void BuildTurret(GameTile tile)
     {
-		if(tile.Content.Type == GameTileContentType.Empty)
+        if (tile.Content.Type == GameTileContentType.Empty)
         {
 			tile.Content = contentFactory.Get((GameTileContentType)GetTurretToBuild());
 			if (!FindPaths())

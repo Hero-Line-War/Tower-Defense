@@ -18,7 +18,7 @@ public class Game : MonoBehaviour {
 			Instance = this;
 		}
 		board.Initialize(boardSize, tileContentFactory);
-		board.ShowGrid = true;
+		//board.ShowGrid = true;
     }
     #endregion
 
