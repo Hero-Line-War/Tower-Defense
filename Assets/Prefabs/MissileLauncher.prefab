@@ -197,7 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 5
   targetingRange: 6
-  damagePerSecond: 10
+  damage: 100
   fireRate: 1
   partToRotate: {fileID: 5190967103560175571}
   enemyTag: Enemy

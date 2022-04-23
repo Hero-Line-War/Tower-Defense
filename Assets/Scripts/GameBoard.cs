@@ -7,9 +7,6 @@ public class GameBoard : MonoBehaviour {
     [SerializeField]
 	GameTile tilePrefab = default;
 
-	[SerializeField]
-	Texture2D gridTexture = default;
-
 	Vector2Int size;
 
 	GameTile[] tiles;

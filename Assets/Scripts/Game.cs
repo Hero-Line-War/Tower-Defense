@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Game : MonoBehaviour {
 
@@ -61,10 +62,14 @@ public class Game : MonoBehaviour {
 
 		if (Input.GetMouseButtonDown(0))
 		{
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+				return;
+            }
 			HandleTouch();
 		}
 
-		if (Input.GetKeyDown(KeyCode.V)) {
+		if (Input.GetKeyDown(KeyCode.P)) {
 			board.ShowPaths = !board.ShowPaths;
 		}
 		if (Input.GetKeyDown(KeyCode.G)) {

@@ -7,7 +7,7 @@ public class Turret : GameTileContent
 	float targetingRange = 1.5f;
 
 	[SerializeField, Range(1f, 100f)]
-	float damagePerSecond = 10f;
+	float damage = 10f;
 
 	[SerializeField, Range(1f, 100f)]
 	float fireRate = 1f;
@@ -20,7 +20,6 @@ public class Turret : GameTileContent
 
 	public string enemyTag = "Enemy";
 	private Transform target;
-    public Enemy Enemy { get; private set; }
 
     public GameObject bulletPrefab;
 	public Transform firePoint;
@@ -49,7 +48,6 @@ public class Turret : GameTileContent
         if (nearestEnemy != null && shortestDistance <= targetingRange)
         {
             target = nearestEnemy.transform;
-            Enemy = target.GetComponent<Enemy>();
         }
         else
         {
@@ -86,8 +84,7 @@ public class Turret : GameTileContent
 
         if (bullet != null)
         {
-            bullet.Seek(target);
-            Enemy.ApplyDamage(damagePerSecond);
+            bullet.Seek(target, damage);
         }
     }
 

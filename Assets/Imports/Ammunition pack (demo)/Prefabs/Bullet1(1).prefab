@@ -67,8 +67,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca017ead6891ef4384059129ddc023f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactEffect: {fileID: 8765956806442800586, guid: d4e20503e04944744a063ec11363b87b, type: 3}
+  impactEffect: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}
   speed: 10
+  explosionRadius: 0
 --- !u!1 &1000011260505556
 GameObject:
   m_ObjectHideFlags: 0
