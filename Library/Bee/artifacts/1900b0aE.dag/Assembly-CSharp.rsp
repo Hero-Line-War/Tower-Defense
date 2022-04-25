@@ -356,6 +356,7 @@
 "Assets/Scripts/EnemyFactory.cs"
 "Assets/Scripts/Game.cs"
 "Assets/Scripts/GameBoard.cs"
+"Assets/Scripts/GameEnemyType.cs"
 "Assets/Scripts/GameObjectFactory.cs"
 "Assets/Scripts/GameTile.cs"
 "Assets/Scripts/GameTileContent.cs"

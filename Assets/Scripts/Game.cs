@@ -45,7 +45,9 @@ public class Game : MonoBehaviour {
 
 	private int waveIndex = 0;
 
+
 	EnemyCollection enemies = new EnemyCollection();
+
 
 	Ray TouchRay => Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -115,23 +117,28 @@ public class Game : MonoBehaviour {
 
 	IEnumerator SpawnWave()
 	{
+		
 		waveIndex++;
 
 		for (int i = 0; i < waveIndex; i++)
 		{
-			SpawnEnemy();
+			SpawnEnemy(ChooseRandomEnemy());
 			yield return new WaitForSeconds(0.5f);
 		}
 
 	}
 
-	void SpawnEnemy()
+	void SpawnEnemy(GameEnemyType type)
 	{
-		GameTile spawnPoint =
-			board.GetSpawnPoint(Random.Range(0, board.SpawnPointCount));
-		Enemy enemy = enemyFactory.Get();
+		GameTile spawnPoint = board.GetSpawnPoint(Random.Range(0, board.SpawnPointCount));
+		Enemy enemy = enemyFactory.Get(type);
 		enemy.SpawnOn(spawnPoint);
 		enemies.Add(enemy);
+	}
+
+	GameEnemyType ChooseRandomEnemy()
+    {
+		return (GameEnemyType) Random.Range(0, System.Enum.GetValues(typeof(GameEnemyType)).Length);
 	}
 
 }

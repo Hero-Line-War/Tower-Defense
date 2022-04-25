@@ -7,19 +7,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+	[SerializeField, Range(1f, 100f)]
+	float speed = 10f;
+
+	[SerializeField, Range(1f, 300f)]
+	float health = 100f;
 
 	EnemyFactory originFactory;
 	GameTile tileFrom, tileTo;
 	Vector3 positionFrom, positionTo;
 	float progress;
-	float speed;
 	float Health { get; set; }
-
-	public void Initialize(float speed)
-	{
-		this.speed = speed;
-		Health = 100f;
-	}
 
 	public EnemyFactory OriginFactory
 	{
@@ -39,6 +37,7 @@ public class Enemy : MonoBehaviour
 		positionFrom = tileFrom.transform.localPosition;
 		positionTo = tileTo.transform.localPosition;
 		progress = 0f;
+		Health = health;
 	}
 
 	public bool GameUpdate()

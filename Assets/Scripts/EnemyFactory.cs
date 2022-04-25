@@ -11,16 +11,30 @@ public class EnemyFactory : GameObjectFactory
 {
 
 	[SerializeField]
-	Enemy prefab = default;
+	Enemy velociraptor = default;
 
 	[SerializeField]
-	float speed = default;
+	Enemy caveTroll = default;
 
-	public Enemy Get()
+	[SerializeField]
+	Enemy evilDragon = default;
+
+	public Enemy GetPrefab(GameEnemyType type)
 	{
-		Enemy instance = CreateGameObjectInstance(prefab);
+		switch (type)
+		{
+			case GameEnemyType.Velociraptor: return velociraptor;
+			case GameEnemyType.CaveTroll: return caveTroll;
+			case GameEnemyType.EvilDragon: return evilDragon;
+		}
+		Debug.Assert(false, "Unsupported type: " + type);
+		return null;
+	}
+
+	public Enemy Get(GameEnemyType type)
+	{
+		Enemy instance = CreateGameObjectInstance(GetPrefab(type));
 		instance.OriginFactory = this;
-		instance.Initialize(speed);
 		return instance;
 	}
 
