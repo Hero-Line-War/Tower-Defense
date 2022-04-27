@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d2bca39950a414eb5ca9bda37fe537, type: 3}
   m_Name: Enemy Factory
   m_EditorClassIdentifier: 
-  velociraptor: {fileID: 8047179229723788508, guid: 1489e285bd7f7b149af4e9737cd26a95, type: 3}
-  caveTroll: {fileID: -2244094962377047109, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
-  evilDragon: {fileID: 8499834827193576701, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
+  velociraptor: {fileID: 3782825758096724168, guid: 1489e285bd7f7b149af4e9737cd26a95, type: 3}
+  caveTroll: {fileID: -3130450288409378440, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
+  evilDragon: {fileID: 911845931909729970, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}

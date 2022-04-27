@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -15,9 +11,12 @@ public class Enemy : MonoBehaviour
 
 	EnemyFactory originFactory;
 	GameTile tileFrom, tileTo;
+	
 	Vector3 positionFrom, positionTo;
 	float progress;
-	float Health { get; set; }
+	public float Speed { get; set; }
+	public float Health { get; set; }
+	
 
 	public EnemyFactory OriginFactory
 	{
@@ -37,6 +36,7 @@ public class Enemy : MonoBehaviour
 		positionFrom = tileFrom.transform.localPosition;
 		positionTo = tileTo.transform.localPosition;
 		progress = 0f;
+		Speed = speed;
 		Health = health;
 	}
 
@@ -64,6 +64,7 @@ public class Enemy : MonoBehaviour
 			progress -= 1f;
 		}
 		transform.localPosition = Vector3.LerpUnclamped(positionFrom, positionTo, progress);
+		transform.LookAt(positionTo);
 		return true;
 	}
 

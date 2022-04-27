@@ -310,13 +310,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549342453241265311}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.24964152, y: 0.24964152, z: 0.24964152}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3087189030913126336}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &8079059883275564950
 SkinnedMeshRenderer:
@@ -677,7 +677,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3087189030913126336}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &5442217218637467508
 SkinnedMeshRenderer:
@@ -1444,7 +1444,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3087189030913126336}
   - component: {fileID: 4926346251212653242}
-  - component: {fileID: 8047179229723788508}
+  - component: {fileID: 3782825758096724168}
   m_Layer: 9
   m_Name: Raptor_Animated_FBX_5K_Sandmale
   m_TagString: Enemy
@@ -1464,9 +1464,9 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7703576562692873162}
   - {fileID: 2695497854784284683}
   - {fileID: 5470525189006971231}
+  - {fileID: 7703576562692873162}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1480,7 +1480,7 @@ Animator:
   m_GameObject: {fileID: 2057230003193109971}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cbb93de8376372a4d9b86c5df56d4814, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1490,7 +1490,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8047179229723788508
+--- !u!114 &3782825758096724168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1499,11 +1499,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2057230003193109971}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 329b5d86f66fbed4b84785d71e70c666, type: 3}
+  m_Script: {fileID: 11500000, guid: 440ae13cdba26ed4697321639c64bbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  health: 100
+  speed: 3
+  health: 75
 --- !u!1 &2089934442203002239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1845,14 +1845,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2901020218459136516}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 24.964153, y: 24.964153, z: 24.964153}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 223938941986974368}
   m_Father: {fileID: 3087189030913126336}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2903574626166657413
 GameObject:
@@ -3255,7 +3255,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6927525053723747437}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3267,7 +3267,7 @@ Transform:
   - {fileID: 6862660866121663094}
   m_Father: {fileID: 7703576562692873162}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &6972018210619567393
 GameObject:
   m_ObjectHideFlags: 0

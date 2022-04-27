@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>9.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,9 +53,6 @@
     <UnityVersion>2021.2.0f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Scripts\CameraManager.cs" />
     <Compile Include="Assets\Imports\AurynSky\Forest Pack\Scripts\MaterialMover.cs" />
     <Compile Include="Assets\Scripts\Turret.cs" />
@@ -65,6 +62,7 @@
     <Compile Include="Assets\Scripts\EnemyFactory.cs" />
     <Compile Include="Assets\Scripts\GameObjectFactory.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\GameEnemyType.cs" />
     <Compile Include="Assets\Imports\AurynSky\Forest Pack\Scripts\WheelController.cs" />
     <Compile Include="Assets\Scripts\GameTileContentType.cs" />
     <Compile Include="Assets\Scripts\Wave.cs" />
@@ -72,6 +70,7 @@
     <Compile Include="Assets\Scripts\Game.cs" />
     <Compile Include="Assets\Imports\EffectExamples\Shared\Scripts\ExtinguishableFire.cs" />
     <Compile Include="Assets\Imports\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
+    <Compile Include="Assets\Scripts\Velociraptor.cs" />
     <Compile Include="Assets\Imports\AurynSky\Forest Pack\Scripts\Rotator.cs" />
     <Compile Include="Assets\Imports\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
     <Compile Include="Assets\Scripts\Shop.cs" />
@@ -82,7 +81,8 @@
     <Compile Include="Assets\Scripts\GameTile.cs" />
     <Compile Include="Assets\Scripts\GameTileContentFactory.cs" />
     <Compile Include="Assets\Imports\EffectExamples\Shared\Scripts\GunAim.cs" />
-    <Compile Include="Assets\Scripts\GameEnemyType.cs" />
+    <Compile Include="Assets\Scripts\EvilDragon.cs" />
+    <Compile Include="Assets\Scripts\CaveTroll.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Prefabs\Enemy\cave_troll\shaders\Standard Two Sided Soft Blend.shader" />

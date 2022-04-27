@@ -351,9 +351,11 @@
 "Assets/Imports/EffectExamples/Shared/Scripts/ParticleMenu.cs"
 "Assets/Scripts/Bullet.cs"
 "Assets/Scripts/CameraManager.cs"
+"Assets/Scripts/CaveTroll.cs"
 "Assets/Scripts/Enemy.cs"
 "Assets/Scripts/EnemyCollection.cs"
 "Assets/Scripts/EnemyFactory.cs"
+"Assets/Scripts/EvilDragon.cs"
 "Assets/Scripts/Game.cs"
 "Assets/Scripts/GameBoard.cs"
 "Assets/Scripts/GameEnemyType.cs"
@@ -364,6 +366,7 @@
 "Assets/Scripts/GameTileContentType.cs"
 "Assets/Scripts/Shop.cs"
 "Assets/Scripts/Turret.cs"
+"Assets/Scripts/Velociraptor.cs"
 "Assets/Scripts/Wave.cs"
 -langversion:9.0
 

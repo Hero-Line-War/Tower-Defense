@@ -1215,7 +1215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 485588}
   - component: {fileID: 9586004}
-  - component: {fileID: 8499834827193576701}
+  - component: {fileID: 911845931909729970}
   m_Layer: 9
   m_Name: Red
   m_TagString: Enemy
@@ -1249,7 +1249,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139696}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 79b50b34e44b5fd4db1cdc9535a3c86b, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 5fa09084d33ac9046a4a22372e78213e, type: 3}
   m_Controller: {fileID: 9100000, guid: 5bd61d42e42f44b4a922495212e06f3f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -1260,7 +1260,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8499834827193576701
+--- !u!114 &911845931909729970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1269,11 +1269,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 139696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 329b5d86f66fbed4b84785d71e70c666, type: 3}
+  m_Script: {fileID: 11500000, guid: c881071305d640a419787fb769e2f308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  health: 100
+  health: 200
 --- !u!1 &139704
 GameObject:
   m_ObjectHideFlags: 0
