@@ -20,27 +20,11 @@ public class GameBoard : MonoBehaviour {
 	GameTileContentFactory contentFactory;
 
 	private int turretToBuild;
+	private int turretCost;
 
 	public int SpawnPointCount => spawnPoints.Count;
 
 	bool showGrid, showPaths;
-
-	/*
-    public bool ShowGrid {
-		get => showGrid;
-		set {
-			showGrid = value;
-			Material m = ground.GetComponent<MeshRenderer>().material;
-			if (showGrid) {
-				m.mainTexture = gridTexture;
-				m.SetTextureScale("_MainTex", size);
-			}
-			else {
-				m.mainTexture = null;
-			}
-		}
-	}
-	*/
 
 	public bool ShowPaths {
 		get => showPaths;
@@ -135,9 +119,10 @@ public class GameBoard : MonoBehaviour {
 		return spawnPoints[index];
 	}
 
-	public void SetTurretToBuild(GameTileContentType type)
+	public void SetTurretToBuild(GameTileContentType type, int cost)
     {
 		turretToBuild = (int) type;
+		turretCost = cost;
 	}
 
 	public int GetTurretToBuild()
@@ -147,6 +132,19 @@ public class GameBoard : MonoBehaviour {
 
 	public void BuildTurret(GameTile tile)
     {
+        if (Player.Money < turretCost)
+        {
+			turretToBuild = -1;
+			Debug.Log("Pas assez d'argent");
+			CursorManager.Instance.SetCursor();
+			return;
+        }
+        else
+        {
+			Debug.Log("Assez d'argent : " + Player.Money);
+			Player.Money -= turretCost;
+
+		}
         if (tile.Content.Type == GameTileContentType.Empty)
         {
 			tile.Content = contentFactory.Get((GameTileContentType)GetTurretToBuild());
