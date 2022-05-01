@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour {
 
@@ -45,6 +46,18 @@ public class Game : MonoBehaviour {
 	[SerializeField]
 	private TextMeshProUGUI waveNumber;
 
+	[SerializeField]
+	private TextMeshProUGUI waveNumberGameOver;
+
+	[SerializeField]
+	private GameObject panelGameOver;
+
+	[SerializeField]
+	private GameObject panelPause;
+
+	[SerializeField]
+	private GameObject panelPlayerInfo;
+
 	private float countdown = 10f;
 
 	private int waveIndex = 0;
@@ -70,6 +83,13 @@ public class Game : MonoBehaviour {
 	}
 
 	void Update () {
+
+		if(Player.Lives <= 0)
+        {
+			Pause();
+			PanelOpenerGameOver();
+
+		}
 
 		if (Input.GetMouseButtonDown(0))
 		{
@@ -175,4 +195,54 @@ public class Game : MonoBehaviour {
 		return (GameEnemyType) Random.Range(0, System.Enum.GetValues(typeof(GameEnemyType)).Length);
 	}
 
+	public void PanelOpenerGameOver()
+	{
+		if (panelGameOver != null)
+		{
+			panelGameOver.SetActive(true);
+			waveNumberGameOver.text = waveNumber.text + " wave";
+		}
+	}
+
+	public void PanelOpenerPause()
+	{
+		if (panelPause != null)
+		{
+			panelPause.SetActive(true);
+			panelPlayerInfo.SetActive(false);
+			Pause();
+		}
+	}
+
+	public void Speed()
+	{
+		Time.timeScale = 2f;
+	}
+
+	public void Resume()
+	{
+		Time.timeScale = 1f;
+	}
+
+	public void ResumePauseMenu()
+	{
+		panelPause.SetActive(false);
+		panelPlayerInfo.SetActive(true);
+		Time.timeScale = 1f;
+	}
+
+	public void Pause()
+    {
+		Time.timeScale = 0f;
+    }
+
+	public void Restart()
+	{
+		SceneManager.LoadScene("Game");
+	}
+
+	public void Quit()
+	{
+		Application.Quit();
+	}
 }

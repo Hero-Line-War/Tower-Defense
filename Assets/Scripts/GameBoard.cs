@@ -47,18 +47,17 @@ public class GameBoard : MonoBehaviour {
 			if (showPaths)
 			{
 				int i = 0;
-				GameTile[] gameTiles = new GameTile[99];
+				GameTile[] gameTiles = new GameTile[size.x * size.y];
 				gameTiles[i] = tiles[i];
 				while (gameTiles[i].NextTileOnPath != null)
                 {
 					i++;
-					gameTiles[i] = tiles[i].NextTileOnPath;
-
+					gameTiles[i] = gameTiles[i-1].NextTileOnPath;
 				}
-				foreach (GameTile tile in gameTiles)
-				{
-					tile.ShowPath();
-				}
+				for(int y = 1; y< i; y++)
+                {
+					gameTiles[y].ShowPath();
+                }
 			}
 			else
 			{

@@ -359,7 +359,6 @@
 "Assets/Scripts/Shop.cs"
 "Assets/Scripts/Turret.cs"
 "Assets/Scripts/Velociraptor.cs"
-"Assets/Scripts/Wave.cs"
 -langversion:9.0
 
 /deterministic

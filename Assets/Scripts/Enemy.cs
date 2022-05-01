@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class Enemy : MonoBehaviour
 	[SerializeField, Range(1, 4)]
 	int damage = 1;
 
+	public GameObject healthBarUI;
+	public Slider slider;
+
 	EnemyFactory originFactory;
 	GameTile tileFrom, tileTo;
 	
@@ -22,6 +26,8 @@ public class Enemy : MonoBehaviour
 	float progress;
 	public float Speed { get; set; }
 	public float Health { get; set; }
+
+	private float maxHealth;
 	
 
 	public EnemyFactory OriginFactory
@@ -44,6 +50,7 @@ public class Enemy : MonoBehaviour
 		progress = 0f;
 		Speed = speed;
 		Health = health;
+		maxHealth = Health;
 	}
 
 	public bool GameUpdate()
@@ -81,5 +88,6 @@ public class Enemy : MonoBehaviour
 	{
 		Debug.Assert(damage >= 0f, "Negative damage applied.");
 		Health -= damage;
+		slider.value = Health / maxHealth;
 	}
 }

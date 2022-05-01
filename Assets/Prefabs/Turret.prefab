@@ -252,7 +252,7 @@ MonoBehaviour:
   type: 4
   targetingRange: 3.5
   damage: 10
-  fireRate: 10
+  fireRate: 5
   partToRotate: {fileID: 1889392134891449698}
   enemyTag: Enemy
   bulletPrefab: {fileID: 1000011023395326, guid: 2ce15a1900ef14a459f78260cd05a3dc, type: 3}
