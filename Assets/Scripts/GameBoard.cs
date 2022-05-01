@@ -29,6 +29,7 @@ public class GameBoard : MonoBehaviour {
 	public bool ShowPaths {
 		get => showPaths;
 		set {
+			/*
 			showPaths = value;
 			if (showPaths) {
 				foreach (GameTile tile in tiles) {
@@ -37,6 +38,32 @@ public class GameBoard : MonoBehaviour {
 			}
 			else {
 				foreach (GameTile tile in tiles) {
+					tile.HidePath();
+				}
+			}
+			*/
+
+			showPaths = value;
+			if (showPaths)
+			{
+				int i = 0;
+				GameTile[] gameTiles = new GameTile[99];
+				gameTiles[i] = tiles[i];
+				while (gameTiles[i].NextTileOnPath != null)
+                {
+					i++;
+					gameTiles[i] = tiles[i].NextTileOnPath;
+
+				}
+				foreach (GameTile tile in gameTiles)
+				{
+					tile.ShowPath();
+				}
+			}
+			else
+			{
+				foreach (GameTile tile in tiles)
+				{
 					tile.HidePath();
 				}
 			}
@@ -135,13 +162,11 @@ public class GameBoard : MonoBehaviour {
         if (Player.Money < turretCost)
         {
 			turretToBuild = -1;
-			Debug.Log("Pas assez d'argent");
 			CursorManager.Instance.SetCursor();
 			return;
         }
         else
         {
-			Debug.Log("Assez d'argent : " + Player.Money);
 			Player.Money -= turretCost;
 
 		}
@@ -153,10 +178,6 @@ public class GameBoard : MonoBehaviour {
 				tile.Content = contentFactory.Get(GameTileContentType.Empty);
 				FindPaths();
 			}
-		}else if (tile.Content.Type == GameTileContentType.SandBags || tile.Content.Type == GameTileContentType.StandardTurret)
-        {
-			SellTurret(tile);
-			tile.Content = contentFactory.Get((GameTileContentType)GetTurretToBuild());
 		}
 
 	}
@@ -168,6 +189,7 @@ public class GameBoard : MonoBehaviour {
 
 	public void SellTurret(GameTile tile)
     {
+		Player.Money += Shop.Instance.GetCostTurret(tile.Content.Type)/2;
 		tile.Content = contentFactory.Get(GameTileContentType.Empty);
 	}
 

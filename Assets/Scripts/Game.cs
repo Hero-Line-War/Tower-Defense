@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class Game : MonoBehaviour {
 
@@ -36,12 +37,15 @@ public class Game : MonoBehaviour {
 	EnemyFactory enemyFactory = default;
 
 	[SerializeField]
-	private float timeBetweenWaves = 5f;
+	private float timeBetweenWaves = 10f;
 
 	[SerializeField]
 	private Text waveCountdownTimer;
 
-	private float countdown = 2f;
+	[SerializeField]
+	private TextMeshProUGUI waveNumber;
+
+	private float countdown = 10f;
 
 	private int waveIndex = 0;
 
@@ -51,7 +55,12 @@ public class Game : MonoBehaviour {
 
 	Ray TouchRay => Camera.main.ScreenPointToRay(Input.mousePosition);
 
-	void OnValidate () {
+    private void Start()
+    {
+		waveNumber.text = "0";
+	}
+
+    void OnValidate () {
 		if (boardSize.x < 2) {
 			boardSize.x = 2;
 		}
@@ -68,7 +77,16 @@ public class Game : MonoBehaviour {
             {
 				return;
             }
-			HandleTouch();
+			MousePrimaryClick();
+		}
+
+		if (Input.GetMouseButtonDown(1))
+		{
+			if (EventSystem.current.IsPointerOverGameObject())
+			{
+				return;
+			}
+			MouseSecondaryClick();
 		}
 
 		if (Input.GetKeyDown(KeyCode.P)) {
@@ -92,7 +110,7 @@ public class Game : MonoBehaviour {
 		board.GameUpdate();
 	}
 
-	void HandleTouch()
+	void MousePrimaryClick()
 	{
         GameTile tile = board.GetTile(TouchRay);
         if (tile != null)
@@ -112,13 +130,29 @@ public class Game : MonoBehaviour {
             {
                 board.UpgradeTurret(tile);
             }
-        }
+
+		}
+	}
+
+	void MouseSecondaryClick()
+	{
+		GameTile tile = board.GetTile(TouchRay);
+		if (tile != null && tile.Content.Type != GameTileContentType.Empty)
+		{
+			if (Input.GetKey(KeyCode.LeftShift))
+			{
+				board.SellTurret(tile);
+			}
+			
+
+		}
 	}
 
 	IEnumerator SpawnWave()
 	{
 		
 		waveIndex++;
+		waveNumber.text = waveIndex.ToString();
 
 		for (int i = 0; i < waveIndex; i++)
 		{

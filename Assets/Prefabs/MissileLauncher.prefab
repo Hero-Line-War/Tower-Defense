@@ -158,6 +158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4473121201096529260}
   - component: {fileID: 1683157807974996271}
+  - component: {fileID: 1401542493330155657}
   m_Layer: 0
   m_Name: MissileLauncher
   m_TagString: Untagged
@@ -203,6 +204,19 @@ MonoBehaviour:
   enemyTag: Enemy
   bulletPrefab: {fileID: 1374693194890512, guid: 285fd8dbd96cfab43b28b8e12386178d, type: 3}
   firePoint: {fileID: 468161601871733644}
+--- !u!65 &1401542493330155657
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843937339807158230}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5, z: 4}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!1 &6259417011939665031
 GameObject:
   m_ObjectHideFlags: 0

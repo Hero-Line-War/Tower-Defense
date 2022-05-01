@@ -74,16 +74,6 @@ public class Bullet : MonoBehaviour
                 enemy.ApplyDamage(damage);
             }
         }
-        /*
-        foreach(Collider collider in colliders)
-        {
-            
-            if(collider.GetComponent<Collider>().tag == "Enemy")
-            {
-                Enemy.ApplyDamage(damage);
-            }
-        }
-        */
     }
 
     private void OnDrawGizmosSelected()

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -7,6 +8,13 @@ public class Player : MonoBehaviour
 
     [SerializeField, Range(1f, 30f)]
     int lives = 15;
+
+    [SerializeField]
+    public TextMeshProUGUI textMoney;
+
+    [SerializeField]
+    public TextMeshProUGUI textLives;
+
     public static int Money { get; set; }
     public static int Lives { get; set; }
 
@@ -18,6 +26,12 @@ public class Player : MonoBehaviour
         rounds = 0;
         Money = money;
         Lives = lives;
+    }
+
+    private void Update()
+    {
+        textMoney.text = Money.ToString();
+        textLives.text = Lives.ToString();
     }
 
 }

@@ -3,11 +3,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-	[SerializeField, Range(1f, 100f)]
-	float speed = 10f;
+	[SerializeField, Range(1f, 5f)]
+	float speed = 1f;
 
 	[SerializeField, Range(1f, 300f)]
 	float health = 100f;
+
+	[SerializeField, Range(1, 50)]
+	int GoldEarned = 10;
+
+	[SerializeField, Range(1, 4)]
+	int damage = 1;
 
 	EnemyFactory originFactory;
 	GameTile tileFrom, tileTo;
@@ -46,6 +52,7 @@ public class Enemy : MonoBehaviour
 		if (Health <= 0f)
 		{
 			OriginFactory.Reclaim(this);
+			Player.Money += GoldEarned;
 			return false;
 		}
 		
@@ -57,6 +64,7 @@ public class Enemy : MonoBehaviour
 			if (tileTo == null)
 			{
 				OriginFactory.Reclaim(this);
+				Player.Lives -= damage;
 				return false;
 			}
 			positionFrom = positionTo;

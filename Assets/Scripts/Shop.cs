@@ -4,6 +4,22 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
+    #region Singleton
+    public static Shop Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+    #endregion
+
     [SerializeField, Range(1f, 100f)]
     int costSandBags = 10;
 
@@ -17,8 +33,19 @@ public class Shop : MonoBehaviour
     public Button StandardTurret;
     public Button MissileLauncher;
 
+    public Text textCostSandBags;
+    public Text textCostStandardTurret;
+    public Text textCostMissileLauncher;
+
+    public Image PadlockSandBags;
+    public Image PadlockStandardTurret;
+    public Image PadlockMissileLauncher;
+
     private Button [] buttons;
+    private Image[] images;
     private Dictionary<Button, int> costTurret;
+
+    private int count;
 
     private void Start()
     {
@@ -26,25 +53,30 @@ public class Shop : MonoBehaviour
         costTurret.Add(SandBags, costSandBags);
         costTurret.Add(StandardTurret, costStandardTurret);
         costTurret.Add(MissileLauncher, costMissileLauncher);
+        textCostSandBags.text = costSandBags.ToString();
+        textCostStandardTurret.text = costStandardTurret.ToString();
+        textCostMissileLauncher.text = costMissileLauncher.ToString();
+        images = new Image[] { PadlockSandBags, PadlockStandardTurret, PadlockMissileLauncher };
     }
 
     private void Update()
     {
+        count = 0;
         foreach (KeyValuePair<Button, int> kvp in costTurret)
         {
             if (Player.Money < kvp.Value)
             {
                 kvp.Key.enabled = false;
-                //kvp.Key.image.color = new Color(219, 26, 26);
+                images[count].enabled = true;
             }
             else
             {
                 kvp.Key.enabled = true;
-                //kvp.Key.image.color = new Color(255, 255, 255);
+                images[count].enabled = false;
             }
+            count++;
         }
 
-        
     }
 
 
@@ -66,5 +98,19 @@ public class Shop : MonoBehaviour
         CursorManager.Instance.SetCursor();
     }
 
+    public int GetCostTurret(GameTileContentType type)
+    {
+        switch ((int) type)
+        {
+            case 3:
+                return costSandBags;
+            case 4:
+                return costStandardTurret;
+            case 5:
+                return costMissileLauncher;
+            default:
+                return -1;
+        }
+    }
 
 }
